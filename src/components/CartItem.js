@@ -4,7 +4,7 @@ import { removeItem, increase, decrease } from '../features/cart/cartSlice';
 import { ChevronDown, ChevronUp } from '../icons'
 
 const CartItem = ({ id, img, title, price, amount }) => {
-
+    // destructuring props in arrow function 
     const dispatch = useDispatch();
 
     return (

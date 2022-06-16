@@ -11,11 +11,13 @@ function App() {
   const { isOpen } = useSelector((store) => store.modal);
   const dispatch = useDispatch();
 
+  // dispatch actions 
   useEffect(() => {
     dispatch(calculateTotals());
 
   }, [cartItems])
 
+  // thunk api call 
   useEffect(() => {
     dispatch(getCartItems());
   }, []);
