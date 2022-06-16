@@ -4,10 +4,10 @@ import CartContainer from "./components/CartContainer";
 import Modal from "./components/Modal";
 import Navbar from "./components/Navbar";
 import { calculateTotals } from "./features/cart/cartSlice";
-// import {  getCartItems } from "./features/cart/cartSlice";
+import {  getCartItems } from "./features/cart/cartSlice";
 
 function App() {
-  const { cartItems, isLoading } = useSelector((store) => store.cart);
+  const { cartItems, isLoading } = useSelector((state) => state.cart);
   const { isOpen } = useSelector((store) => store.modal);
   const dispatch = useDispatch();
 
@@ -16,17 +16,20 @@ function App() {
 
   }, [cartItems])
 
-  // useEffect(() => {
-  //   dispatch(getCartItems());
-  // },[])
+  useEffect(() => {
+    dispatch(getCartItems());
+  }, []);
 
-  // if (isLoading) {
-  //   return <div>
-  //     <h1>Loading!!!!!!!!!!!!!!!!!!!!</h1>
-  //   </div>
-  // }
+  if (isLoading) {
+    return (
+      <div className='loading'>
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return <>
-    {isOpen && <Modal />}
+      {isOpen && <Modal />}
     <Navbar />
     <CartContainer />
   </>;
